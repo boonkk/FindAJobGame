@@ -1,21 +1,16 @@
 package com.olech.findajobgame.model;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureArray;
-import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.awt.*;
 
-public abstract   class  GameObject extends Rectangle {
+public abstract class GameObject extends Rectangle {
     private Texture texture;
     private TextureRegion texRegion;
-    public GameObject(Texture texture) {
-        this.texture = texture;
-        //texRegion = new TextureRegion(texture,texture);
-    }
 
-    public Texture getTexture() {
+
+    public TextureRegion getTexture() {
         return texture;
     }
 
@@ -23,5 +18,6 @@ public abstract   class  GameObject extends Rectangle {
         this.texture = texture;
     }
 
-    public abstract void moveDir(Direction direction);
+    public abstract TextureRegion[] getAnimationSequence();
+
 }
