@@ -10,20 +10,18 @@ import com.olech.findajobgame.view.View;
 
 public class Controller {
     private View view;
+
     private ModelContainer model;
     private PlayerCharacter playerCharacter = PlayerCharacter.Male1;
     private float elapsedTime;
 
-    public void init() {
+    public Controller () {
+        view = new View();
         model = new ModelContainer(playerCharacter);
     }
 
-    public Controller () {
-
-    }
-
     public void draw() {
-        view.draw(model);
+        view.draw(model,elapsedTime);
     }
     public void update() {
 
@@ -33,5 +31,15 @@ public class Controller {
         model.movePlayer(direction);
     }
 
+    public ModelContainer getModel() {
+        return model;
+    }
 
+    public float getElapsedTime() {
+        return elapsedTime;
+    }
+
+    public void dispose() {
+        view.dispose();
+    }
 }

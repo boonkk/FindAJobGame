@@ -3,7 +3,7 @@ package com.olech.findajobgame.model;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public enum  PlayerCharacter {
+public enum PlayerCharacter {
     Male1("male1.png"),
     Male2("male2.png"),
     Female1("female1.png"),

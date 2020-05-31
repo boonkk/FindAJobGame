@@ -6,18 +6,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.awt.*;
 
 public abstract class GameObject extends Rectangle {
-    private Texture texture;
-    private TextureRegion texRegion;
+
+    public abstract TextureRegion getTextureRegion();
 
 
-    public TextureRegion getTexture() {
-        return texture;
-    }
+    //todo add some kind of parsing mechanism to make data discrete (divide game area into 32 px square cells)
 
-    public void setTexture(Texture texture) {
-        this.texture = texture;
-    }
 
-    public abstract TextureRegion[] getAnimationSequence();
 
 }

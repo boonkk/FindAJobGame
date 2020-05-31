@@ -1,11 +1,15 @@
 package com.olech.findajobgame.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.olech.findajobgame.MyGdxGame;
 
-public class Player extends GameObject {
-    private final int walkingStepSize = 10;
+public class Player extends GameObject implements Animatable{
+    private final int walkingStepSize = 5;
     private PlayerCharacter character;
     private TextureRegion[] currentAnimationSequence;
+    public static final int GAME_WIDTH = Gdx.graphics.getWidth();
+    public static final int GAME_HEIGHT = Gdx.graphics.getHeight();
 
 //    private int experience;
 //    private int luck;
@@ -13,6 +17,7 @@ public class Player extends GameObject {
 
     public Player(PlayerCharacter character) {
         this.character = character;
+        currentAnimationSequence = character.getAnimationDownSequenceArray();
     }
 
     public void setLeftSequence() {
@@ -53,6 +58,15 @@ public class Player extends GameObject {
                 this.y-=walkingStepSize;
                 break;
         }
+        checkBorders();
+    }
+
+    private void checkBorders() {
+        x = x < 0 ? 0 : x;
+        x = x > GAME_WIDTH - 32 ? GAME_WIDTH - 32 : x;
+        y = y < 0 ? 0 : y;
+        y = y > GAME_HEIGHT - 32 ? GAME_HEIGHT - 32 : y;
+        //todo change 32 to constants (or global constants -32 if not needed elsewhere)
     }
 
     @Override
@@ -61,4 +75,8 @@ public class Player extends GameObject {
     }
 
 
+    @Override
+    public TextureRegion getTextureRegion() {
+        return null;
+    }
 }

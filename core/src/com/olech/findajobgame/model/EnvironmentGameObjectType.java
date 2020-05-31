@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public enum EnvironmentGameObjectType {
     Tree("tree.png"),
-    Block(""),
-    Building("")
+//    Block(""),
+//    Building("")
     ;
 
 
@@ -15,7 +15,7 @@ public enum EnvironmentGameObjectType {
 
     EnvironmentGameObjectType(String path) {
         texture = new Texture(path);
-        textureRegions = TextureRegion.split(texture,32,32);
+        textureRegions = TextureRegion.split(texture,96,96);
     }
 
     public TextureRegion getTreeTexture() {

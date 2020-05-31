@@ -4,41 +4,23 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.olech.findajobgame.controller.Controller;
-import com.olech.findajobgame.model.Direction;
-import com.olech.findajobgame.model.GameObject;
-import com.olech.findajobgame.model.Player;
-import com.olech.findajobgame.view.View;
 
-import java.util.ArrayList;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.olech.findajobgame.controller.Controller;
+import com.olech.findajobgame.model.*;
+
+
+
 
 public class MyGdxGame extends ApplicationAdapter {
 	Controller controller;
 
-	private SpriteBatch batch;  //puszka z farba  - otworzyc i zamknac
-	private Texture texture;
-	private BitmapFont font;
-	private GameObject gameObject;
-	private static final int moveStepSize = 10;
-	private float elapsedTime;
-	private ArrayList<Animation<TextureRegion>> animations = new ArrayList<>();
+	private ShapeRenderer shapeRenderer;
 
 	@Override
 	public void create () {
 		controller = new Controller();
-		controller.init();
-		texture = new Texture("malechar1.png");
-		batch = new SpriteBatch();
-		font = new BitmapFont();
-		gameObject = new Player(texture);
-		animations.add(gameObject.getAnimation());
-
-
+		shapeRenderer = new ShapeRenderer();
 	}
 
 	@Override
@@ -46,18 +28,12 @@ public class MyGdxGame extends ApplicationAdapter {
 		update();
 		Gdx.gl.glClearColor(98/255f, 114/255f, 114/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		ModelContainer model = controller.getModel();
 
-		batch.begin();
 		controller.draw();
-		batch.draw(animations.get(0).getKeyFrame(elapsedTime),gameObject.x, gameObject.y);
-		//font.draw(batch, "Job Hunter", 350, 460);
-
-		batch.end();
 	}
 
 	private void update() {
-		elapsedTime += Gdx.graphics.getDeltaTime();
-
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			controller.moveControl(Direction.LEFT);
 		}
@@ -75,8 +51,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void dispose () {
-		batch.dispose();
-		texture.dispose();
-		font.dispose();
+		controller.dispose();
 	}
 }

@@ -11,8 +11,8 @@ public class ModelContainer {
     public ModelContainer(PlayerCharacter character) {
         player = new Player(character);
         gameObjects.add(player);
-        gameObjects.add(new EnvironmentGameObject(EnvironmentGameObjectType.Tree));
-        gameObjects.add(new EnvironmentGameObject(EnvironmentGameObjectType.Tree));
+        gameObjects.add(new EnvironmentGameObject(EnvironmentGameObjectType.Tree,100, 200));
+        gameObjects.add(new EnvironmentGameObject(EnvironmentGameObjectType.Tree,200, 350));
     }
 
     public Player getPlayer() {

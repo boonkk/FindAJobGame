@@ -5,17 +5,20 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class EnvironmentGameObject extends GameObject {
     EnvironmentGameObjectType objectType;
 
-    public EnvironmentGameObject(EnvironmentGameObjectType objectType) {
+    public EnvironmentGameObject(EnvironmentGameObjectType objectType, int x, int y) {
         this.objectType = objectType;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
-    public TextureRegion[] getAnimationSequence() {
-        return new TextureRegion[0];
+    public TextureRegion getTextureRegion() {
+        return null;
     }
 
-    @Override
-    public TextureRegion getTexture() {
-        return objectType.getTreeTexture();
-    }
+//
+//    public TextureRegion[] getAnimationSequence() {
+//        return new TextureRegion[0];
+//    }
+
 }
