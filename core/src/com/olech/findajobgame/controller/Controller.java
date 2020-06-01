@@ -1,11 +1,9 @@
 package com.olech.findajobgame.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.olech.findajobgame.model.Direction;
+import com.olech.findajobgame.model.utils.Direction;
 import com.olech.findajobgame.model.ModelContainer;
-import com.olech.findajobgame.model.PlayerCharacter;
+import com.olech.findajobgame.model.player.PlayerCharacter;
 import com.olech.findajobgame.view.View;
 
 public class Controller {

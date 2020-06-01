@@ -89,10 +89,10 @@ public class Player extends GameObject implements Animatable{
 
     public void checkCollision(GameObject o) {
         if(this.intersects(o)) {
-            System.out.println("truskawka");
             currentDirection = currentDirection.getOpposite();
             updateCoordinates(currentDirection);
             parseDiscrete();
+            setMovingSequence(currentDirection.getOpposite());
         }
     }
     @Override

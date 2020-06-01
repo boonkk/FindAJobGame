@@ -8,8 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.olech.findajobgame.controller.Controller;
 import com.olech.findajobgame.model.*;
-
-
+import com.olech.findajobgame.model.utils.Direction;
 
 
 public class MyGdxGame extends ApplicationAdapter {
