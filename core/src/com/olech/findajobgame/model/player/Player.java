@@ -1,10 +1,15 @@
-package com.olech.findajobgame.model;
+package com.olech.findajobgame.model.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.olech.findajobgame.model.gameobject.GameObject;
+import com.olech.findajobgame.model.utils.Animatable;
+import com.olech.findajobgame.model.utils.Direction;
+
+import java.awt.*;
 
 
-public class Player extends GameObject implements Animatable{
+public class Player extends GameObject implements Animatable {
     private final int walkingStepSize = 2;
     private PlayerCharacter character;
     private TextureRegion[] currentAnimationSequence;
@@ -87,7 +92,7 @@ public class Player extends GameObject implements Animatable{
         return currentAnimationSequence;
     }
 
-    public void checkCollision(GameObject o) {
+    public void checkCollision(Rectangle o) {
         if(this.intersects(o)) {
             currentDirection = currentDirection.getOpposite();
             updateCoordinates(currentDirection);

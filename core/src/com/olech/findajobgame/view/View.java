@@ -1,13 +1,12 @@
 package com.olech.findajobgame.view;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.olech.findajobgame.model.Animatable;
-import com.olech.findajobgame.model.GameObject;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.olech.findajobgame.model.utils.Animatable;
 import com.olech.findajobgame.model.ModelContainer;
-
-
 
 
 public class View {
@@ -19,7 +18,24 @@ public class View {
 
 
     public void draw(ModelContainer model, float elapsedTime) {
+
+        ShapeRenderer shapeRenderer = new ShapeRenderer();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(0, 1, 1, 1);
+
+
+        int squaresOnHeight = 480/32;
+        int squaresOnWidth = 800/32;
+
+
+        for(int y = 0; y < squaresOnHeight; y++){
+            for(int x = 0; x < squaresOnWidth; x++){
+                shapeRenderer.rect(x*32, y*32, 32, 32);
+            }
+        }
+        shapeRenderer.end();
         batch.begin();
+        batch.draw(new Texture("backgroundgame.png"),0,0);
 //        System.out.println(model.getGameObjects().get(0));
 //        System.out.println(model.getGameObjects().get(0).getAnimationSequence().length);
 //        Animation<TextureRegion> animation = new Animation<>(1f/10f, model.getGameObjects().get(0).getAnimationSequence());

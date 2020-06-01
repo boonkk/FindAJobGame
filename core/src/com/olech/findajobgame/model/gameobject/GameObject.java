@@ -1,4 +1,4 @@
-package com.olech.findajobgame.model;
+package com.olech.findajobgame.model.gameobject;
 
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

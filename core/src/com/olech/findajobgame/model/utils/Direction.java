@@ -1,4 +1,4 @@
-package com.olech.findajobgame.model;
+package com.olech.findajobgame.model.utils;
 
 public enum Direction {
     UP,
