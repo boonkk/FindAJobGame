@@ -46,4 +46,6 @@ public enum PlayerCharacter {
     public TextureRegion[] getAnimationDownSequenceArray() {
         return textureRegions[0];
     }
+
+
 }

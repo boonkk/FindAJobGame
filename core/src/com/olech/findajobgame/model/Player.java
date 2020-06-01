@@ -2,12 +2,13 @@ package com.olech.findajobgame.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.olech.findajobgame.MyGdxGame;
+
 
 public class Player extends GameObject implements Animatable{
-    private final int walkingStepSize = 5;
+    private final int walkingStepSize = 2;
     private PlayerCharacter character;
     private TextureRegion[] currentAnimationSequence;
+    private Direction currentDirection;
     public static final int GAME_WIDTH = Gdx.graphics.getWidth();
     public static final int GAME_HEIGHT = Gdx.graphics.getHeight();
 
@@ -18,6 +19,8 @@ public class Player extends GameObject implements Animatable{
     public Player(PlayerCharacter character) {
         this.character = character;
         currentAnimationSequence = character.getAnimationDownSequenceArray();
+        this.height = character.getCharFront().getRegionHeight();
+        this.width = character.getCharFront().getRegionWidth();
     }
 
     public void setLeftSequence() {
@@ -37,28 +40,30 @@ public class Player extends GameObject implements Animatable{
     }
 
     public void moveDir(Direction direction) {
+        currentDirection = direction;
+        updateCoordinates(direction);
+        setMovingSequence(direction);
+        checkBorders();
+        parseDiscrete();
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateCoordinates(Direction direction) {
         switch(direction){
-            case RIGHT:
-                setRightSequence();
-                this.x+=walkingStepSize;
+            case RIGHT: this.x+=walkingStepSize;
                 break;
-
-            case LEFT:
-                setLeftSequence();
-                this.x-=walkingStepSize;
+            case LEFT: this.x-=walkingStepSize;
                 break;
-
-            case UP:
-                setUpSequence();
-                this.y+=walkingStepSize;
+            case UP: this.y+=walkingStepSize;
                 break;
-
-            case DOWN:
-                setDownSequence();
-                this.y-=walkingStepSize;
+            case DOWN: this.y-=walkingStepSize;
                 break;
         }
-        checkBorders();
+        parseDiscrete();
     }
 
     private void checkBorders() {
@@ -69,14 +74,46 @@ public class Player extends GameObject implements Animatable{
         //todo change 32 to constants (or global constants -32 if not needed elsewhere)
     }
 
+    // todo find a better way for animation to be smoother
+    private void parseDiscrete() {
+        if(x%16 != 0)
+            moveDir(currentDirection);
+        if(y%16 !=0)
+            moveDir(currentDirection);
+    }
+
     @Override
     public TextureRegion[] getAnimationSequence() {
         return currentAnimationSequence;
     }
 
-
+    public void checkCollision(GameObject o) {
+        if(this.intersects(o)) {
+            System.out.println("truskawka");
+            currentDirection = currentDirection.getOpposite();
+            updateCoordinates(currentDirection);
+            parseDiscrete();
+        }
+    }
     @Override
     public TextureRegion getTextureRegion() {
-        return null;
+        return character.getCharFront();
+    }
+
+    private void setMovingSequence(Direction direction) {
+        switch(direction) {
+            case RIGHT:
+                setRightSequence();
+                break;
+            case LEFT:
+                setLeftSequence();
+                break;
+            case UP:
+                setUpSequence();
+                break;
+            case DOWN:
+                setDownSequence();
+                break;
+        }
     }
 }

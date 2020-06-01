@@ -9,11 +9,16 @@ public class EnvironmentGameObject extends GameObject {
         this.objectType = objectType;
         this.x = x;
         this.y = y;
+
+        this.width = objectType.getTexture().getRegionWidth();
+        this.height = objectType.getTexture().getRegionHeight();
+        //should be static final
+
     }
 
     @Override
     public TextureRegion getTextureRegion() {
-        return null;
+        return objectType.getTexture();
     }
 
 //

@@ -1,12 +1,15 @@
 package com.olech.findajobgame.model;
 
-import com.badlogic.gdx.graphics.Texture;
+
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.awt.*;
 
 public abstract class GameObject extends Rectangle {
+    // decide if extending rectangle is necessary propably not
+    // put more things from Player and Environment into this class
 
+    // RECTANGLE provides easy check for collisions
     public abstract TextureRegion getTextureRegion();
 
 
