@@ -10,14 +10,16 @@ import com.olech.findajobgame.view.View;
 
 public class Controller {
     private View view;
+    private boolean newGame = true;
 
     private ModelContainer model;
     private PlayerCharacter playerCharacter = PlayerCharacter.Male1;
     private float elapsedTime;
 
+
     public Controller () {
         view = new View();
-        model = new ModelContainer(playerCharacter);
+        model = new ModelContainer(playerCharacter, newGame);
     }
 
     public void draw() {

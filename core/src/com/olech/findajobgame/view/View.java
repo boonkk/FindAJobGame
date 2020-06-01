@@ -27,7 +27,7 @@ public class View {
         model.getGameObjects()
                 .forEach(object -> {
                     if( object instanceof Animatable ) {
-                        Animation<TextureRegion> animation = new Animation<>(1f/10f, ((Animatable) object).getAnimationSequence());
+                        Animation<TextureRegion> animation = new Animation<>(1f/20f, ((Animatable) object).getAnimationSequence());
                         animation.setPlayMode(Animation.PlayMode.LOOP);
                         batch.draw(animation.getKeyFrame(elapsedTime), object.x, object.y);
                     } else if(object != null)
